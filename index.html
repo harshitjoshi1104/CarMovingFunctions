@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Program for Programmers</title>
+    <style>
+        .container{
+            width: 100%;
+            height: 900px;
+            display: flex;
+            background-color: tomato;
+            border:2px solid;
+            flex-direction: column;
+        }
+
+        .mainHeading{
+            margin: 2rem;
+            width: 90%;
+            height: 4rem;
+            background-color: teal;
+            border:2px solid;
+        }
+
+        .mainBody{
+            margin: 2rem;
+            width: 90%;
+            height: 30rem;
+            background-color: teal;
+            border:2px solid;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items:center ;
+        }
+
+        .leftBody{
+            width: 40%;
+            height: 90%;
+            background-color:thistle;
+            border:2px solid;
+        }
+        .rightBody{
+            width: 40%;
+            height: 90%;
+            background-color:thistle;
+            border:2px solid;
+            justify-content: none;
+            align-items: none;
+        }
+
+        #objectdiv{
+            width: 1.5cm;
+            height: 1.5cm;
+            position: absolute;
+            top:560px;      /* Movement of 85px*/
+            left:830px;         /*Movement of 100px*/
+        }
+
+        .btn{
+            margin: 1rem;
+            border:2px solid;
+            border-radius: 30px;
+            height: 2rem;
+            width: 70%;
+            background-color: darkcyan;
+            cursor:grab;
+        }
+
+        .btn:hover{
+            background-color: rgba(0, 139, 139, 0.548);
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="mainHeading">
+            <center><h1 style="color: white;text-decoration: underline;">Just Creating a Car Movement According to the Function Specified</h1></center>
+        </div>
+
+        <div class="mainBody">
+            <div class="leftBody">
+                <center><h1 style="color: teal;text-align: center;">Commands Available</h1>
+                    <br>
+                    <br>
+                    <br>
+
+                    <button class="btn" id="movefront" onclick="move1()">Move</button>
+                    <br>
+                    <button class="btn" id="turnLeft" onclick="turnLeft1()">Turn Left</button><br>
+                    <button class="btn" id="turnRight" onclick="turnRight1()">Turn Right</button><br></center>
+                <!-- <button class="btn" id="btnfunc4"></button> -->
+            </div>
+            <div class="rightBody">
+                <img class="rightBody"src="grid5x5Image.gif" alt="" style="width: 100%;height: 100%;padding: 0px;">
+            </div>
+        </div>
+        <div id="objectdiv">
+            <center><img src="carModel.jpg" alt="" style="width: 2cm;height: 1cm;"> </center>
+        </div>
+
+    </div>
+
+    <script>
+        var allingDir="right";
+        var objectDIV=document.getElementById("objectdiv");
+        var objPosTop;
+        var objPosLeft;
+        function move1(){
+            objPosTop=parseInt(window.getComputedStyle(objectDIV).getPropertyValue("top"));
+            objPosLeft=parseInt(window.getComputedStyle(objectDIV).getPropertyValue("left"))
+            if(allingDir==="right")
+                {
+                    if(objPosLeft+100<=1300)
+                    {
+                        objectDIV.style.left=objPosLeft+100+"px";
+                    }
+                }
+            else if(allingDir==="top")
+                {  
+                    if(objPosTop-85>=210)
+                    {
+                        objectDIV.style.top=(objPosTop-85)+"px";
+                    }
+                }
+            else if(allingDir==="left")
+                {
+                    // console.log(objPosLeft-100)
+                    if(objPosLeft-100>=820)
+                    {
+                        objectDIV.style.left=(objPosLeft-100)+"px";
+                    }
+                }
+            else if(allingDir==="bottom")
+                {
+                    if(objPosTop+80<=570)
+                    objectDIV.style.top=(objPosTop+85)+"px";
+                }
+        }
+
+        function turnLeft1(){
+            if(allingDir==="right")
+                {
+                    objectDIV.style.transform="rotateZ(-90deg)"
+                    allingDir="top"
+                }
+            else if(allingDir==="top")
+                {
+                    
+                    objectDIV.style.transform="rotateZ(-180deg)"
+                    allingDir="left"
+                }
+            else if(allingDir==="left")
+                {
+                    objectDIV.style.transform="rotateZ(-270deg)"
+                    allingDir="bottom"
+                }
+            else if(allingDir==="bottom")
+                {
+                    objectDIV.style.transform="rotateZ(360deg)"
+                    allingDir="right"
+                }            
+        }
+
+        function turnRight1(){
+
+            if(allingDir==="right")
+                {
+                    objectDIV.style.transform="rotateZ(90deg)"
+                    allingDir="bottom"
+                }
+            else if(allingDir==="bottom")
+                {
+                    
+                    objectDIV.style.transform="rotateZ(180deg)"
+                    allingDir="left"
+                }
+            else if(allingDir==="left")
+                {
+                    objectDIV.style.transform="rotateZ(270deg)"
+                    allingDir="top"
+                }
+            else if(allingDir==="top")
+                {
+                    objectDIV.style.transform="rotateZ(360deg)"
+                    allingDir="right"
+                }
+            
+        }
+        
+    </script>
+</body>
+</html>
